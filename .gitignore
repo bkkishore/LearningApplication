@@ -5,3 +5,5 @@
 /.vs
 /ExampleApplication/.vs/ExampleApplication/v16
 *.v2
+/ExampleApplication/ExampleWebAPI/bin/Debug/netcoreapp3.1
+/ExampleApplication/ExampleWebAPI/obj
