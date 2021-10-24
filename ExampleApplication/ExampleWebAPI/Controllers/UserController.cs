@@ -24,13 +24,16 @@ namespace ExampleWebAPI.Controllers
     }
 
 
-
-
-
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
+        public string ConnectionString; 
+        public UserController()
+        {
+            ConnectionString = "Data Source = IN1232093W2; Initial Catalog = DotNet; " + "Integrated Security = true";
+        }
+
         [Route("GetUserProfile")]
         [HttpGet]
         public IActionResult GetUserProfile()
@@ -38,7 +41,7 @@ namespace ExampleWebAPI.Controllers
             List<UserProfile> myUserProfile = new List<UserProfile>();
             try
             {
-                string ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
+                
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
@@ -76,11 +79,55 @@ namespace ExampleWebAPI.Controllers
             return Ok(myUserProfile);
         }
 
+        [Route("ValidateUserProfile")]
+        [HttpPost]
+        public IActionResult ValidateUserProfile([FromBody]UserProfile myUserProfile)
+        {
+            try
+            {
+                //string ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
+                using (SqlConnection conn = new SqlConnection(ConnectionString))
+                {
+                    conn.Open();
+
+                    string commandText = $"SELECT UserId FROM UserProfile WHERE UserId='{myUserProfile.UserId}' and UserPassword='{myUserProfile.UserPassword}'";
+
+                    SqlCommand command = new SqlCommand(commandText, conn);
+                    SqlDataReader reader = command.ExecuteReader();
+                    int nCount = 0;
+                    while (reader.Read())
+                    {
+                        nCount++;
+                    }
+
+                    if(nCount <= 0)
+                    {
+                        return BadRequest();
+                    }
+
+                        //for (int i = 0; i < myUserProfile.Count; i++)
+                        //{
+                        //    string commandText = $"INSERT INTO UserProfile VALUES('{myUserProfile[i].UserId}','{myUserProfile[i].UserFirstName}', '{myUserProfile[i].UserLastName}', '{myUserProfile[i].UserPassword}', '{myUserProfile[i].DateOfBirth}','{myUserProfile[i].CommunicationAddress}','{myUserProfile[i].EmailId}','{myUserProfile[i].MobileNumber}','{myUserProfile[i].Interests}')";
+                        //    SqlCommand command = new SqlCommand(commandText, conn);
+
+                        //    command.ExecuteNonQuery();
+
+                        //    recordsInserted++;
+                        //}
+                        conn.Close();
 
 
 
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
 
+            }
+            return Ok();
 
+        }
         //PostMethod
 
         [Route("InsertUserProfile")]
@@ -89,7 +136,7 @@ namespace ExampleWebAPI.Controllers
         {
             try
             {
-                string ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
+                //string ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
@@ -123,12 +170,12 @@ namespace ExampleWebAPI.Controllers
         //put
 
         [Route("UpdateUserProfile")]
-        [HttpPost]
+        [HttpPut]
         public IActionResult UpdateUserProfile([FromBody] List<UserProfile> myUserProfile)
         {
             try
             {
-                string ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
+                //string ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
