@@ -31,7 +31,7 @@ namespace ExampleWebAPI.Controllers
         public string ConnectionString; 
         public UserController()
         {
-            ConnectionString = "Data Source = IN1232093W2; Initial Catalog = DotNet; " + "Integrated Security = true";
+            ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
         }
 
         [Route("GetUserProfile")]

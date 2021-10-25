@@ -1,3 +1,59 @@
 <p>
   signup works!
 </p>
+
+
+<div>  
+
+  <label>Enter userId </label><br>
+  <input name="userId" type="text" maxlength="20" (keyup)="onKeyUp()" [(ngModel)]="userId"/> 
+  <br>
+   <br>
+  <label>Enter userFirstName </label><br>
+  <input name="userFirstName" type="text" maxlength="20" (keyup)="onKeyUp()" [(ngModel)]="userFirstName"/> 
+  <br>
+  <br>
+  <label>Enter userLastName </label><br>
+  <input name="userLastName" type="text" maxlength="20" (keyup)="onKeyUp()" [(ngModel)]="userLastName"/>
+  <br>
+
+  <br>
+  <label>Enter userDateOfBirth </label><br>
+  <input name="userDateOfBirth" type="date" maxlength="20" (keyup)="onKeyUp()" [(ngModel)]="userDateOfBirth"/>
+  <br>
+
+  <br>
+  <label>Enter CommuicationAddress </label><br>
+  <input name="commuicationAddress" type="text" maxlength="800" (keyup)="onKeyUp()" [(ngModel)]="commuicationAddress"/>
+  <br>
+
+  <br>
+  <label>Enter emailId </label><br>
+  <input name="emailId" type="email" maxlength="20" (keyup)="onKeyUp()" [(ngModel)]="emailId"/>
+  <br>
+ <br>
+  <label>Enter mobileNumber </label><br>
+  <input name="mobileNumber" type="number" maxlength="15" (keyup)="onKeyUp()" [(ngModel)]="mobileNumber"/>
+  <br>
+  <br>
+  <label>Enter interests </label><br>
+  <input name="interests" type="text" maxlength="2000" (keyup)="onKeyUp()" [(ngModel)]="interests"/>
+  <br>
+
+  <br>
+  <label>Enter Password </label><br>
+  <input name="Password" type="password" maxlength="20" (keyup)="onKeyUp()" [(ngModel)]="Password"/>
+  <br>
+  
+  <br>
+  <label> ConfirmPassword </label><br>
+  <input name="ConfirmPassword" type="password" maxlength="20" (keyup)="onKeyUpConfirmPassword()" [(ngModel)]="ConfirmPassword"/>
+  <br>
+
+  <br>
+  <button value="Add" (click)="AddUser()">{{actionButtonName}}</button>
+  <br>
+
+</div>
+  
+  <!-- <button (click)="SignupUser()">Signup</button></p> -->

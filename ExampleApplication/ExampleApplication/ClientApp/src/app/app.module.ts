@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { AdminHomeComponent } from './admin-home/admin-home.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SignupComponent } from './signup/signup.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    AdminHomeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -27,7 +29,8 @@ import { SignupComponent } from './signup/signup.component';
      RouterModule.forRoot([
       { path: '', component:LoginComponent , pathMatch: 'full' },
       { path: 'home', component:HomeComponent},
-      { path: 'signup', component: SignupComponent}
+      { path: 'signup', component: SignupComponent},
+      {path: 'login', component: LoginComponent},
        /* { path: 'first', component: FirstComponentComponent },
       { path: 'second', component: NewSecondComponent },  */
     ]) 
