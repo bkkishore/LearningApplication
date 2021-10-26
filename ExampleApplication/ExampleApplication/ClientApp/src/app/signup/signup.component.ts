@@ -20,84 +20,18 @@ export class SignupComponent implements OnInit {
   Password:string='';
   userProfiles:any=[];
   actionButtonName:string='';
-  loginError: boolean;
-  constructor(private route: Router, private httpService:HttpClient) {
+  constructor(private route: Router) {
 
    }
 
   ngOnInit() 
   {
-    
-    this.actionButtonName='Signup'
-    let userId='UserIdrId';
-    let userFirstName='UserFirstName';
-    let userLastName ='UserLastName';
-    let Password = 'UserPassword';
-    let DateOfBirth='DateOfBirth';
-    let emailId='emailId';
-    let MobileNumber='MobileNumber';
-    let interests ='interests';
-    
-   
-  
-    if(this.actionButtonName == 'Add')
-    {
-    let UserProfile ={};
-  
-    UserProfile[userId] = this.userId;
-    UserProfile[userFirstName] = this.userFirstName;
-    UserProfile[userLastName] = this.userLastName;
-    UserProfile[Password] = this.Password;
-    UserProfile[DateOfBirth] = this.DateOfBirth;
-    UserProfile[emailId] = this.emailId;
-    UserProfile[MobileNumber] = this.MobileNumber;
-    UserProfile[interests] = this.interests;
-   
-    
-  
-    this.userProfiles.push(UserProfile)
-   
-   
-    }
   }
-      AddUser()
-      {
-        this.route.navigate(['/login']);
-        }
-      
-           InsertUserProfile()
-            {
-              
-              
-                 let UserProfile ={};
-                 const headersForAPI = new HttpHeaders();
-                 headersForAPI.append('Content-Type', 'application/json');
-                 headersForAPI.append('Accept', 'application/json');
-             
-                 this.httpService.post('https://localhost:44338/api/User/InsertUserProfile',UserProfile, {headers: headersForAPI}).subscribe((res:any) => {
-             
-                 console.log(res);  
-                   error =>{
-                   console.log('Invalid user credentials');
-                 this.loginError = true;
-                   }
-                });  
-                }
-
-              
-             
-            
-           }
-          
-
-
-
-      
-
-
-
-
-
+  AddUser()
+  {
+    this.route.navigate(['/login']);
+  }
+}
 
 
 
@@ -171,4 +105,5 @@ export class SignupComponent implements OnInit {
   // else
   // {
   //   this.submitDisabled = true;
+  // }
   // }

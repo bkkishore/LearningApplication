@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { send } from 'process';
 
 @Component({
   selector: 'app-admin-home',
@@ -20,23 +18,50 @@ export class AdminHomeComponent implements OnInit {
   userProfiles:any=[];
   actionButtonName:string='';
   UserProfileIndex:number=0;
-  loginError:any=false;
-  
-  constructor( private httpService:HttpClient) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
+
+
+addRecord()
+{
+  
+  let userId='userId';
+  let userFirstName='FirstName';
+  let userLastName ='userLastName';
+  let DateOfBirth='DateOfBirth';
+  let emailId='emailId';
+  let MobileNumber='MobileNumber';
+  let interests ='interests';
+  let Password = 'Password';
+ 
+
+  if(this.actionButtonName == 'Add')
+  {
+  let UserProfile ={};
+
+  UserProfile[userId] = this.userId;
+  UserProfile[userFirstName] = this.userFirstName;
+  UserProfile[userLastName] = this.userLastName;
+  UserProfile[DateOfBirth] = this.DateOfBirth;
+  UserProfile[emailId] = this.emailId;
+  UserProfile[MobileNumber] = this.MobileNumber;
+  UserProfile[interests] = this.interests;
+  UserProfile[Password] = this.Password;
+  
+
+  this.userProfiles.push(UserProfile)
   }
   
-
+}
+  
+}
   
 
-  
 
 
-
-   
 
 
 
