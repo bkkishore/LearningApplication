@@ -31,6 +31,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
       { path: 'home', component:HomeComponent},
       { path: 'signup', component: SignupComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'adminhome', component: AdminHomeComponent}
        /* { path: 'first', component: FirstComponentComponent },
       { path: 'second', component: NewSecondComponent },  */
     ]) 

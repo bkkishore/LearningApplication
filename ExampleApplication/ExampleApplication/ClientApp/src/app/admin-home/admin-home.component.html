@@ -4,7 +4,7 @@
 <div>
   admin-home
 </div>
-<div *ng if ="UserProfile.length >0">
+<div *ng if ="UserProfiles.length >0">
   <table>
     <tr>
       <th>UserId</th>
@@ -18,7 +18,7 @@
       <th>password</th>
     </tr>
     
-  <tr *ngFor="let user of UserProfile; index as i">
+  <tr *ngFor="let user of UserProfiles; index as i">
 
     <td>{{user.UserId}}</td>
     <td>{{user.userFirstName}}</td>

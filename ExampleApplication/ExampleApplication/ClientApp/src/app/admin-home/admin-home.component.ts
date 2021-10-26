@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
@@ -18,14 +18,14 @@ export class AdminHomeComponent implements OnInit {
   userProfiles:any=[];
   actionButtonName:string='';
   UserProfileIndex:number=0;
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit() {
   }
 
 
 
-addRecord()
+InsertUserProfile()
 {
   
   let userId='userId';

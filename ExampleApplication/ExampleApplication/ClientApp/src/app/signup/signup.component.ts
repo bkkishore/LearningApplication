@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
@@ -27,62 +27,53 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() 
   {
-    
-    this.actionButtonName='Signup'
-    let userId='UserIdrId';
-    let userFirstName='UserFirstName';
-    let userLastName ='UserLastName';
-    let Password = 'UserPassword';
-    let DateOfBirth='DateOfBirth';
-    let emailId='emailId';
-    let MobileNumber='MobileNumber';
-    let interests ='interests';
-    
-   
+    this.actionButtonName='Signup';
   
     if(this.actionButtonName == 'Add')
     {
     let UserProfile ={};
-  
-    UserProfile[userId] = this.userId;
-    UserProfile[userFirstName] = this.userFirstName;
-    UserProfile[userLastName] = this.userLastName;
-    UserProfile[Password] = this.Password;
-    UserProfile[DateOfBirth] = this.DateOfBirth;
-    UserProfile[emailId] = this.emailId;
-    UserProfile[MobileNumber] = this.MobileNumber;
-    UserProfile[interests] = this.interests;
-   
-    
-  
-    this.userProfiles.push(UserProfile)
-   
-   
     }
   }
       AddUser()
-      {
-        this.route.navigate(['/login']);
+        {
+       
         }
       
            InsertUserProfile()
             {
-              
-              
+                  let userId='UserIdrId';
+                  let userFirstName='UserFirstName';
+                  let userLastName ='UserLastName';
+                  let Password = 'UserPassword';
+                  let DateOfBirth='DateOfBirth';
+                  let emailId='emailId';
+                  let MobileNumber='MobileNumber';
+                  let interests ='interests';
                  let UserProfile ={};
+                 UserProfile[userId] = this.userId;
+                 UserProfile[userFirstName] = this.userFirstName;
+                 UserProfile[userLastName] = this.userLastName;
+                 UserProfile[Password] = this.Password;
+                 UserProfile[DateOfBirth] = this.DateOfBirth;
+                 UserProfile[emailId] = this.emailId;
+                 UserProfile[MobileNumber] = this.MobileNumber;
+                 UserProfile[interests] = this.interests;
+                 this.userProfiles.push(UserProfile)
                  const headersForAPI = new HttpHeaders();
                  headersForAPI.append('Content-Type', 'application/json');
                  headersForAPI.append('Accept', 'application/json');
              
-                 this.httpService.post('https://localhost:44338/api/User/InsertUserProfile',UserProfile, {headers: headersForAPI}).subscribe((res:any) => {
+                 this.httpService.post('https://localhost:44372/api/User/InsertUserProfile',this.userProfiles, {headers: headersForAPI}).subscribe((res:any) => {
              
                  console.log(res);  
+                 this.route.navigate(['/login']);
+            },
                    error =>{
                    console.log('Invalid user credentials');
                  this.loginError = true;
                    }
-                });  
-                }
+                );  
+             }
 
               
              

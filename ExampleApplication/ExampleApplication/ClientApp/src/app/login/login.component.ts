@@ -46,7 +46,16 @@ export class LoginComponent implements OnInit {
     error =>{
        console.log('Invalid user credentials');
        this.loginError = true;
-    });      
+    }); 
+    
+    if (this.userNameModel=='admin' && this.userPasswordModel=='admin')
+    {
+      this.route.navigate(['/adminhome']);
+    }
+    else
+    {
+      this.route.navigate(['/home']);
+    }
   }
-
+    
 }
