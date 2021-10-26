@@ -27,26 +27,32 @@ export class LoginComponent implements OnInit {
 
   ValidateUser()
   {      
-    let userRecord = {};
+    let myUserProfile = {};
 
-      userRecord['userId'] = this.userNameModel;
-      userRecord['userPassword'] = this.userPasswordModel;    
+    myUserProfile['userId'] = this.userNameModel;
+    myUserProfile['userPassword'] = this.userPasswordModel;    
 
       const headersForAPI = new HttpHeaders();
       headersForAPI.append('Content-Type', 'application/json');
       headersForAPI.append('Accept', 'application/json');
 
-      this.httpService.post('https://localhost:44338/api/User/ValidateUserProfile',userRecord, {headers: headersForAPI}).subscribe((res:any) => {
+      this.httpService.post('https://localhost:44372/api/User/ValidateUserProfile',myUserProfile, {headers: headersForAPI}).subscribe((res:any) => {
      
       console.log(res);      
       // this.userRecordsFromAPI = res;
       this.route.navigate(['/home']);
 
-    },
-    error =>{
-       console.log('Invalid user credentials');
-       this.loginError = true;
-    });      
+     });
+    
+  
   }
 
+
+
+
+
+    // error =>{
+    //    console.log('Invalid user credentials');
+    //    this.loginError = true;
+    // });      
 }

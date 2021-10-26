@@ -9,3 +9,10 @@ CREATE TABLE UserProfile (
 	MobileNumber varchar(15),
 	Interests varchar(500),	   
 );
+
+
+insert into UserProfile values('admin',null,null,'admin',null,null,null,null,null)
+
+
+
+select * from UserProfile
