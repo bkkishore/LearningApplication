@@ -36,11 +36,18 @@ export class LoginComponent implements OnInit {
       headersForAPI.append('Content-Type', 'application/json');
       headersForAPI.append('Accept', 'application/json');
 
-      this.httpService.post('https://localhost:44338/api/User/ValidateUserProfile',userRecord, {headers: headersForAPI}).subscribe((res:any) => {
+      this.httpService.post('https://localhost:44372/api/User/ValidateUserProfile',userRecord, {headers: headersForAPI}).subscribe((res:any) => {
      
       console.log(res);      
       // this.userRecordsFromAPI = res;
-      this.route.navigate(['/home']);
+        if (this.userNameModel=='admin' && this.userPasswordModel=='admin')
+      {
+        this.route.navigate(['/adminhome']);
+      }
+      else
+      {
+        this.route.navigate(['/home']);
+      }
 
     },
     error =>{
@@ -48,14 +55,7 @@ export class LoginComponent implements OnInit {
        this.loginError = true;
     }); 
     
-    if (this.userNameModel=='admin' && this.userPasswordModel=='admin')
-    {
-      this.route.navigate(['/adminhome']);
-    }
-    else
-    {
-      this.route.navigate(['/home']);
-    }
+    
   }
     
 }

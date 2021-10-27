@@ -27,6 +27,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() 
   {
+    console.log('from SignupComponent');
     this.actionButtonName='Signup';
   
     if(this.actionButtonName == 'Add')
@@ -41,11 +42,12 @@ export class SignupComponent implements OnInit {
       
            InsertUserProfile()
             {
-                  let userId='UserIdrId';
+                  let userId='UserId';
                   let userFirstName='UserFirstName';
                   let userLastName ='UserLastName';
                   let Password = 'UserPassword';
                   let DateOfBirth='DateOfBirth';
+                  let CommunicationAdderss='CommunicationAddress';
                   let emailId='emailId';
                   let MobileNumber='MobileNumber';
                   let interests ='interests';
@@ -55,9 +57,11 @@ export class SignupComponent implements OnInit {
                  UserProfile[userLastName] = this.userLastName;
                  UserProfile[Password] = this.Password;
                  UserProfile[DateOfBirth] = this.DateOfBirth;
+                 UserProfile[CommunicationAdderss] = this.CommunicationAddress;
                  UserProfile[emailId] = this.emailId;
-                 UserProfile[MobileNumber] = this.MobileNumber;
+                 UserProfile[MobileNumber] = this.MobileNumber.toString();
                  UserProfile[interests] = this.interests;
+                 console.log(UserProfile);
                  this.userProfiles.push(UserProfile)
                  const headersForAPI = new HttpHeaders();
                  headersForAPI.append('Content-Type', 'application/json');
