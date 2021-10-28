@@ -17,6 +17,7 @@ export class AdminHomeComponent implements OnInit {
   interests:string='';
   Password:string='';
   userProfiles:any=[];
+  UserProfile:any;
   actionButtonName:string='';
   UserProfileIndex:number=0;
   loginError:boolean
@@ -24,49 +25,55 @@ export class AdminHomeComponent implements OnInit {
   constructor(private route: Router, private httpService:HttpClient) { }
 
   ngOnInit() {
+      
+    const headersForAPI = new HttpHeaders();
+    headersForAPI.append('Content-Type', 'application/json');
+    headersForAPI.append('Accept', 'application/json');
+
+    this.httpService.get('https://localhost:44372/api/User/GetUserProfile').subscribe((res:any) => {
+    
+      console.log(res)
+      this.UserProfile= res;
+    },
+    );  
   }
-
-
-
-        GetUserProfile()
-      {
-        let userId='UserId';
-        let userFirstName='UserFirstName';
-        let userLastName ='UserLastName';
-        let Password = 'UserPassword';
-        let DateOfBirth='DateOfBirth';
-        let CommunicationAdderss='CommunicationAddress';
-        let emailId='emailId';
-        let MobileNumber='MobileNumber';
-        let interests ='interests';
-      
-      
-      const headersForAPI = new HttpHeaders();
-      headersForAPI.append('Content-Type', 'application/json');
-      headersForAPI.append('Accept', 'application/json');
-
-      this.httpService.get('https://localhost:44372/api/User/GetUserProfile').subscribe((res:any) => {
-
-      
-      let UserProfile ={};
-      UserProfile[userId] = this.userId;
-      UserProfile[userFirstName] = this.userFirstName;
-      UserProfile[userLastName] = this.userLastName;
-      UserProfile[Password] = this.Password;
-      UserProfile[DateOfBirth] = this.DateOfBirth;
-      UserProfile[CommunicationAdderss] = this.CommunicationAddress;
-      UserProfile[emailId] = this.emailId;
-      UserProfile[MobileNumber] = this.MobileNumber.toString();
-      UserProfile[interests] = this.interests;
-      this.userProfiles.push(UserProfile)
-      console.log(UserProfile);
-      console.log(res);  
-      this.userProfiles=res;
-      },
-      );  
-        }
-        
+    GetUserProfile()
+    {
+      let userId='UserId';
+      let userFirstName='UserFirstName';
+      let userLastName ='UserLastName';
+      let Password = 'UserPassword';
+      let DateOfBirth='DateOfBirth';
+      let CommunicationAddress='CommunicationAddress';
+      let emailId='emailId';
+      let MobileNumber='MobileNumber';
+      let interests ='interests';
+   
+    
+    let UserProfile ={};
+    UserProfile[userId] = this.userId;
+    UserProfile[userFirstName] = this.userFirstName;
+    UserProfile[userLastName] = this.userLastName;
+    UserProfile[Password] = this.Password;
+    UserProfile[DateOfBirth] = this.DateOfBirth;
+    UserProfile[CommunicationAddress] = this.CommunicationAddress;
+    UserProfile[emailId] = this.emailId;
+    UserProfile[MobileNumber] = this.MobileNumber.toString();
+    UserProfile[interests] = this.interests;
+    this.userProfiles.push(UserProfile)
+    console.log(UserProfile);
+    
       }
+    }
+      
+    
+
+
+    
+  
+
+
+
         
 
         
@@ -90,26 +97,3 @@ export class AdminHomeComponent implements OnInit {
 
 
 
-
-
-      // else
-//     {   
-//       var existingUserRecord = this.userProfiles[this.UserProfileIndex];
-
-//       let UserProfile  = {};
-//       UserProfile[userId] = this.userId;
-//       UserProfile[userFirstName] = this.userFirstName;
-//       UserProfile[userLastName] = this.userLastName;
-//       UserProfile[DateOfBirth] = this.DateOfBirth;
-//       UserProfile[emailId] = this.emailId;
-//       UserProfile[MobileNumber] = this.MobileNumber;
-//       UserProfile[interests] = this.interests;
-//       UserProfile[Password] = this.Password;
-//       this.userProfiles.splice(this.UserProfileIndex,1,UserProfile);
-
-//       this.actionButtonName = 'Add';
-
-//      /*  let tempArray: any[];
-//       tempArray.splice(2,1,userRecord); */
-
-    //}
