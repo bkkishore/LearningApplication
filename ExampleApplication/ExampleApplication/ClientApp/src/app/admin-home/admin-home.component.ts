@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpClient, HttpHeaders} from '@angular/common/http';
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
@@ -18,57 +19,57 @@ export class AdminHomeComponent implements OnInit {
   userProfiles:any=[];
   actionButtonName:string='';
   UserProfileIndex:number=0;
-  constructor(private route: Router) { }
+  loginError:boolean
+  
+  constructor(private route: Router, private httpService:HttpClient) { }
 
   ngOnInit() {
   }
 
 
 
-InsertUserProfile()
-{
-  
-  let userId='userId';
-  let userFirstName='FirstName';
-  let userLastName ='userLastName';
-  let DateOfBirth='DateOfBirth';
-  let emailId='emailId';
-  let MobileNumber='MobileNumber';
-  let interests ='interests';
-  let Password = 'Password';
- 
+        GetUserProfile()
+      {
+        let userId='UserId';
+        let userFirstName='UserFirstName';
+        let userLastName ='UserLastName';
+        let Password = 'UserPassword';
+        let DateOfBirth='DateOfBirth';
+        let CommunicationAdderss='CommunicationAddress';
+        let emailId='emailId';
+        let MobileNumber='MobileNumber';
+        let interests ='interests';
+      
+      
+      const headersForAPI = new HttpHeaders();
+      headersForAPI.append('Content-Type', 'application/json');
+      headersForAPI.append('Accept', 'application/json');
 
-  if(this.actionButtonName == 'Add')
-  {
-  let UserProfile ={};
+      this.httpService.get('https://localhost:44372/api/User/GetUserProfile').subscribe((res:any) => {
 
-  UserProfile[userId] = this.userId;
-  UserProfile[userFirstName] = this.userFirstName;
-  UserProfile[userLastName] = this.userLastName;
-  UserProfile[DateOfBirth] = this.DateOfBirth;
-  UserProfile[emailId] = this.emailId;
-  UserProfile[MobileNumber] = this.MobileNumber;
-  UserProfile[interests] = this.interests;
-  UserProfile[Password] = this.Password;
-  
+      
+      let UserProfile ={};
+      UserProfile[userId] = this.userId;
+      UserProfile[userFirstName] = this.userFirstName;
+      UserProfile[userLastName] = this.userLastName;
+      UserProfile[Password] = this.Password;
+      UserProfile[DateOfBirth] = this.DateOfBirth;
+      UserProfile[CommunicationAdderss] = this.CommunicationAddress;
+      UserProfile[emailId] = this.emailId;
+      UserProfile[MobileNumber] = this.MobileNumber.toString();
+      UserProfile[interests] = this.interests;
+      this.userProfiles.push(UserProfile)
+      console.log(UserProfile);
+      console.log(res);  
+      this.userProfiles=res;
+      },
+      );  
+        }
+        
+      }
+        
 
-  this.userProfiles.push(UserProfile)
-  }
-  
-}
-  
-}
-  
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
@@ -81,7 +82,17 @@ InsertUserProfile()
 
 
 
-// else
+
+
+
+
+
+
+
+
+
+
+      // else
 //     {   
 //       var existingUserRecord = this.userProfiles[this.UserProfileIndex];
 

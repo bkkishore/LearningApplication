@@ -1,35 +1,61 @@
 <p>
   admin-home works!
 </p>
+
 <div>
   admin-home
 </div>
-<div *ng if ="UserProfiles.length >0">
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<!-- <div *ng if ="UserProfilesfromAPI"> -->
+  <div>
   <table>
     <tr>
       <th>UserId</th>
-      <th>userFirstName</th>
-      <th>userLastName</th>
-      <th>userDateOfBirth</th>
-      <th>CommuicationAddress</th>
-      <th>emailId</th>
-      <th>mobileNumber</th>
-      <th>interests</th>
-      <th>password</th>
+      <th>UserFirstName</th>
+      <th>UserLastName</th>
+      <th>UserPassword</th>
+      <th>DateOfBirth</th>
+      <th>CommunicationAddress</th>
+      <th>EmailId</th>
+      <th>MobileNumber</th>
+      <th>Interests</th>
+    
     </tr>
     
-  <tr *ngFor="let user of UserProfiles; index as i">
+  <!-- <tr *ngFor="let user of UserProfiles; index as i"> -->
 
-    <td>{{user.UserId}}</td>
+    
+<tr>
+      <td>{{user.userId}}</td>
     <td>{{user.userFirstName}}</td>
     <td>{{user.userLastName}}</td>
-    <td>{{user.userDateOfBirth}}</td>
-    <td>{{user.CommuicationAddress}}</td>
-    <td>{{user.emailId}}</td>
-    <td>{{user.mobileNumber}}</td>
-    <td>{{user.interests}}</td>
     <td>{{user.Password}}</td>
-      </tr>
+    <td>{{user.DateOfBirth}}</td>
+    <td>{{user.CommunicationAddress}}</td>
+    <td>{{user.emailId}}</td> 
+    <td>{{user.MobileNumber}}</td>
+    <td>{{user.interests}}</td>
+    </tr>
   </table>
   
 </div>
