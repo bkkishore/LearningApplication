@@ -1,6 +1,7 @@
 import { Component,Input, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import {UserService} from '../user.service';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -8,7 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
   submitDisabled:boolean=true;
-  onKeyUpConfirmPassword:any;
   userId:string='';
   userFirstName:string = '';
   userLastName:string = '';
@@ -21,24 +21,66 @@ export class SignupComponent implements OnInit {
   userProfiles:any=[];
   actionButtonName:string='';
   loginError: boolean;
-  constructor(private route: Router, private httpService:HttpClient) {
+  userRecordIndex: any;
+  constructor(private route: Router, private httpService:HttpClient,private userService:UserService) {
 
    }
 
-  ngOnInit() 
-  {
-    console.log('from SignupComponent');
-    this.actionButtonName='Signup';
-  
-    if(this.actionButtonName == 'Add')
-    {
-    let UserProfile ={};
-    }
-  }
-      AddUser()
+        ngOnInit() 
         {
-       
-        }
+          if (this.userService.userProfile != null || this.userService.userProfile != undefined){
+            this.userId=this.userService.userProfile.userId;
+            this.userFirstName=this.userService.userProfile.userFirstName;
+            this.userLastName=this.userService.userProfile.userLastName ;
+            this.DateOfBirth =this.userService.userProfile.DateOfBirth;
+            this.CommunicationAddress=this.userService.userProfile.CommunicationAdderss;
+            this.emailId=this.userService.userProfile.emailId;
+            this.MobileNumber=this.userService.userProfile.MobileNumber;
+            this.interests=this.userService.userProfile.interests;
+          }
+          
+            
+          }
+        
+      AddUser()
+    {
+         
+    }
+
+        onKeyUpConfirmPassword()
+      {
+            if(this.userId != '' && this.userFirstName != '' && this.userLastName != '' && this.Password !='' && 
+            this.CommunicationAddress!='' && this.emailId != '' && this.MobileNumber > 0 &&
+          this.interests != '' )
+          {
+            this.submitDisabled = false;
+            
+          }
+          else
+          {
+            this.submitDisabled = true;
+          }
+      
+       }
+       loadUserRecord(user: any, index:any)
+       {
+         
+         this.userRecordIndex = index;
+         
+         this.userId=user.userId;
+         this.userFirstName=user.userFirstName;
+         this.userLastName=user.userLastName ;
+         this.DateOfBirth =user.DateOfBirth;
+         this.CommunicationAddress=user.CommunicationAdderss;
+         this.emailId=user.emailId;
+         this.MobileNumber=user.MobileNumber;
+         this.interests=user.interests;
+     
+         this.actionButtonName = 'Modify';
+       } 
+      
+      
+  
       
            InsertUserProfile()
             {
@@ -77,19 +119,20 @@ export class SignupComponent implements OnInit {
                  this.loginError = true;
                    }
                 );  
+              
+               
+              
              }
 
               
              
             
-           }
+  }
           
 
 
 
       
-
-
 
 
 

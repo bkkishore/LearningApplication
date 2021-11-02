@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { UserService } from './user.service';
 
 
 @NgModule({
@@ -32,12 +33,13 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
       { path: 'signup', component: SignupComponent},
       {path: 'login', component: LoginComponent},
       {path: 'adminhome', component: AdminHomeComponent}
+     
        /* { path: 'first', component: FirstComponentComponent },
       { path: 'second', component: NewSecondComponent },  */
     ]) 
   ],
   
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

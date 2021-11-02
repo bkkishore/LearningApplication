@@ -33,7 +33,7 @@ tr:nth-child(even) {
       <th>UserId</th>
       <th>UserFirstName</th>
       <th>UserLastName</th>
-      <th>UserPassword</th>
+      
       <th>DateOfBirth</th>
       <th>CommunicationAddress</th>
       <th>EmailId</th>
@@ -49,12 +49,16 @@ tr:nth-child(even) {
       <td>{{user.userId}}</td>
     <td>{{user.userFirstName}}</td>
     <td>{{user.userLastName}}</td>
-    <td>{{user.userPassword}}</td>
-    <td>{{user.DateOfBirth}}</td>
-    <td>{{user.CommuicationAddress}}</td>
+    
+    <td>{{user.dateOfBirth}}</td>
+    <td>{{user.communicationAddress}}</td>
     <td>{{user.emailId}}</td> 
     <td>{{user.mobileNumber}}</td>
     <td>{{user.interests}}</td>
+    <td>
+      <button value = Edit (click)="loadUserRecord(user,i)">Edit</button>
+      <button (click)="deleteUserRecord(i)">Delete</button>
+    </td>
     </tr>
   </table>
   

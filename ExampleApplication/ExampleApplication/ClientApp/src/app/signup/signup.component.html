@@ -46,11 +46,11 @@
   
   <br>
   <label> ConfirmPassword </label><br>
-  <input name="ConfirmPassword" type="password" maxlength="20"  [(ngModel)]="ConfirmPassword"/>
+  <input name="ConfirmPassword" type="password"  (keyup)="onKeyUpConfirmPassword()" maxlength="20"  [(ngModel)]="ConfirmPassword"/>
   <br>
 
   <br>
-  <button value="Add" (click)="InsertUserProfile()">{{actionButtonName}}</button>
+  <button value="Add"  (click)="InsertUserProfile()">{{actionButtonName}}</button>
   <br>
 
 </div>

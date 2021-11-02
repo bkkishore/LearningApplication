@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { UserService} from '../user.service';
 @Component({
   selector: 'app-admin-home',
   templateUrl: './admin-home.component.html',
@@ -21,11 +22,11 @@ export class AdminHomeComponent implements OnInit {
   actionButtonName:string='';
   UserProfileIndex:number=0;
   loginError:boolean
+  userRecordIndex: any;
   
-  constructor(private route: Router, private httpService:HttpClient) { }
+  constructor(private route: Router, private httpService:HttpClient, private userService:UserService) { }
 
   ngOnInit() {
-      
     const headersForAPI = new HttpHeaders();
     headersForAPI.append('Content-Type', 'application/json');
     headersForAPI.append('Accept', 'application/json');
@@ -35,8 +36,10 @@ export class AdminHomeComponent implements OnInit {
       console.log(res)
       this.UserProfile= res;
     },
-    );  
+    ); 
+  
   }
+ 
     GetUserProfile()
     {
       let userId='UserId';
@@ -44,7 +47,7 @@ export class AdminHomeComponent implements OnInit {
       let userLastName ='UserLastName';
       let Password = 'UserPassword';
       let DateOfBirth='DateOfBirth';
-      let CommunicationAddress='CommunicationAddress';
+      let CommunicationAdderss='CommunicationAddress';
       let emailId='emailId';
       let MobileNumber='MobileNumber';
       let interests ='interests';
@@ -56,7 +59,7 @@ export class AdminHomeComponent implements OnInit {
     UserProfile[userLastName] = this.userLastName;
     UserProfile[Password] = this.Password;
     UserProfile[DateOfBirth] = this.DateOfBirth;
-    UserProfile[CommunicationAddress] = this.CommunicationAddress;
+    UserProfile[CommunicationAdderss] = this.CommunicationAddress;
     UserProfile[emailId] = this.emailId;
     UserProfile[MobileNumber] = this.MobileNumber.toString();
     UserProfile[interests] = this.interests;
@@ -64,6 +67,14 @@ export class AdminHomeComponent implements OnInit {
     console.log(UserProfile);
     
       }
+      loadUserRecord(user,i){
+        console.log('Inside Load User Record');
+        
+        this.userService.userProfile=user;
+        this.route.navigate(['/signup']);
+       
+      }
+      
     }
       
     

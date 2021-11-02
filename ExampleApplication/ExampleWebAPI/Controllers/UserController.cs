@@ -31,7 +31,7 @@ namespace ExampleWebAPI.Controllers
         public string ConnectionString; 
         public UserController()
         {
-            ConnectionString = "Data Source = LAPTOP-15SUDOTM\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
+            ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
         }
 
         [Route("GetUserProfile")]
@@ -167,7 +167,7 @@ namespace ExampleWebAPI.Controllers
 
 
 
-        //put
+        //p
 
         [Route("UpdateUserProfile")]
         [HttpPut]
@@ -182,8 +182,13 @@ namespace ExampleWebAPI.Controllers
                     int recordsInserted = 0;
                     for (int i = 0; i < myUserProfile.Count; i++)
                     {
-                        string commandText = $"UPDATE UserProfile VALUES('{myUserProfile[i].UserId}','{myUserProfile[i].UserFirstName}', '{myUserProfile[i].UserLastName}', '{myUserProfile[i].UserPassword}', '{myUserProfile[i].DateOfBirth}','{myUserProfile[i].CommunicationAddress}','{myUserProfile[i].EmailId}','{myUserProfile[i].MobileNumber}','{myUserProfile[i].Interests}')";
-                        SqlCommand command = new SqlCommand(commandText, conn);
+                        // string commandText = $"UPDATE UserProfile where '{myUserProfile[i].UserId}','{myUserProfile[i].UserFirstName}', '{myUserProfile[i].UserLastName}', '{myUserProfile[i].UserPassword}', '{myUserProfile[i].DateOfBirth}','{myUserProfile[i].CommunicationAddress}','{myUserProfile[i].EmailId}','{myUserProfile[i].MobileNumber}','{myUserProfile[i].Interests}')";
+
+                        SqlCommand command = new SqlCommand($"UPDATE UserProfile set UserId='{myUserProfile[i].UserId}', UserFirstName ='{myUserProfile[i].UserFirstName}',UserLastName='{myUserProfile[i].UserLastName}',UserPassword='{myUserProfile[i].UserPassword}',DateOfBirth='{myUserProfile[i].DateOfBirth}',CommunicationAddress='{myUserProfile[i].CommunicationAddress},MobileNumber='{myUserProfile[i].MobileNumber},Interests='{myUserProfile[i].Interests} where EmailId='{myUserProfile[i].EmailId}'  ", conn);
+
+                       // SqlCommand command = new SqlCommand(commandText, conn);
+
+
 
                         command.ExecuteNonQuery();
 
