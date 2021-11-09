@@ -1,0 +1,30 @@
+<form [formGroup]="NewLoginForm" (ngSubmit)="onSubmit()">
+ 
+  <p>
+    <label for="userFirstName">First Name </label>
+    <input type="text" id="userFirstName" formControlName="userFirstName">
+  </p>
+ 
+  <!-- <p>
+    <p-password [(ngModel)]="value4">
+      <ng-template pTemplate="header">
+          <h6>Pick a password</h6>
+      </ng-template>
+      <ng-template pTemplate="footer">
+          <p-divider></p-divider>
+          <p class="p-mt-2">Suggestions</p>
+          <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1.5">
+              <li>At least one lowercase</li>
+              <li>At least one uppercase</li>
+              <li>At least one numeric</li>
+              <li>Minimum 8 characters</li>
+          </ul> -->
+      <!-- </ng-template>
+  </p-password>
+  </p>
+  -->
+
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+  </form>

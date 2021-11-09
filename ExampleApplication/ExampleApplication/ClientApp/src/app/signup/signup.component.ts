@@ -2,6 +2,7 @@ import { Component,Input, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import {UserService} from '../user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms'
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -22,6 +23,20 @@ export class SignupComponent implements OnInit {
   actionButtonName:string='';
   loginError: boolean;
   userRecordIndex: any;
+
+  SignupForm = new FormGroup({
+    userId: new FormControl(),
+    firstName: new FormControl(),
+    LastName: new FormControl(),
+    DateOfBirth: new FormControl(),
+    CommuicationAddress: new FormControl(),
+    emailId: new FormControl(),
+    mobileNumber: new FormControl(),
+    interests: new FormControl(),
+    Password: new FormControl(),
+    ConfirmPassword: new FormControl(),
+  })
+
   constructor(private route: Router, private httpService:HttpClient,private userService:UserService) {
 
    }
@@ -47,21 +62,21 @@ export class SignupComponent implements OnInit {
          
     }
 
-        onKeyUpConfirmPassword()
-      {
-            if(this.userId != '' && this.userFirstName != '' && this.userLastName != '' && this.Password !='' && 
-            this.CommunicationAddress!='' && this.emailId != '' && this.MobileNumber > 0 &&
-          this.interests != '' )
-          {
-            this.submitDisabled = false;
+      //   onKeyUpConfirmPassword()
+      // {
+      //       if(this.userId != '' && this.userFirstName != '' && this.userLastName != '' && this.Password !='' && 
+      //       this.CommunicationAddress!='' && this.emailId != '' && this.MobileNumber > 0 &&
+      //     this.interests != '' )
+      //     {
+      //       this.submitDisabled = false;
             
-          }
-          else
-          {
-            this.submitDisabled = true;
-          }
+      //     }
+      //     else
+      //     {
+      //       this.submitDisabled = true;
+      //     }
       
-       }
+       //}
        loadUserRecord(user: any, index:any)
        {
          
@@ -70,10 +85,9 @@ export class SignupComponent implements OnInit {
          this.userId=user.userId;
          this.userFirstName=user.userFirstName;
          this.userLastName=user.userLastName ;
-         this.DateOfBirth =user.DateOfBirth;
-         this.CommunicationAddress=user.CommunicationAdderss;
-         this.emailId=user.emailId;
-         this.MobileNumber=user.MobileNumber;
+         this.DateOfBirth =user.dateOfBirth;
+         this.CommunicationAddress=user.communicationAdderss;
+         this.MobileNumber=user.mobileNumber;
          this.interests=user.interests;
      
          this.actionButtonName = 'Modify';

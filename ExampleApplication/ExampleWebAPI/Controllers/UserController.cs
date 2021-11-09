@@ -34,6 +34,8 @@ namespace ExampleWebAPI.Controllers
             ConnectionString = "Data Source = LAPTOP-QP79NHVA\\SQLEXPRESS; Initial Catalog = DotNet; " + "Integrated Security = true";
         }
 
+        //Get
+
         [Route("GetUserProfile")]
         [HttpGet]
         public IActionResult GetUserProfile()
@@ -78,6 +80,8 @@ namespace ExampleWebAPI.Controllers
             }
             return Ok(myUserProfile);
         }
+
+        //Validation
 
         [Route("ValidateUserProfile")]
         [HttpPost]
@@ -128,6 +132,8 @@ namespace ExampleWebAPI.Controllers
             return Ok();
 
         }
+
+
         //PostMethod
 
         [Route("InsertUserProfile")]
@@ -167,7 +173,7 @@ namespace ExampleWebAPI.Controllers
 
 
 
-        //p
+        //put
 
         [Route("UpdateUserProfile")]
         [HttpPut]
@@ -184,7 +190,7 @@ namespace ExampleWebAPI.Controllers
                     {
                         // string commandText = $"UPDATE UserProfile where '{myUserProfile[i].UserId}','{myUserProfile[i].UserFirstName}', '{myUserProfile[i].UserLastName}', '{myUserProfile[i].UserPassword}', '{myUserProfile[i].DateOfBirth}','{myUserProfile[i].CommunicationAddress}','{myUserProfile[i].EmailId}','{myUserProfile[i].MobileNumber}','{myUserProfile[i].Interests}')";
 
-                        SqlCommand command = new SqlCommand($"UPDATE UserProfile set UserId='{myUserProfile[i].UserId}', UserFirstName ='{myUserProfile[i].UserFirstName}',UserLastName='{myUserProfile[i].UserLastName}',UserPassword='{myUserProfile[i].UserPassword}',DateOfBirth='{myUserProfile[i].DateOfBirth}',CommunicationAddress='{myUserProfile[i].CommunicationAddress},MobileNumber='{myUserProfile[i].MobileNumber},Interests='{myUserProfile[i].Interests} where EmailId='{myUserProfile[i].EmailId}'  ", conn);
+                        SqlCommand command = new SqlCommand($"UPDATE UserProfile set UserId='{myUserProfile[i].UserId}', UserFirstName ='{myUserProfile[i].UserFirstName}',UserLastName='{myUserProfile[i].UserLastName}',UserPassword='{myUserProfile[i].UserPassword}',DateOfBirth='{myUserProfile[i].DateOfBirth}',CommunicationAddress='{myUserProfile[i].CommunicationAddress}',MobileNumber='{myUserProfile[i].MobileNumber}',Interests='{myUserProfile[i].Interests}' where EmailId='{myUserProfile[i].EmailId}'  ", conn);
 
                        // SqlCommand command = new SqlCommand(commandText, conn);
 

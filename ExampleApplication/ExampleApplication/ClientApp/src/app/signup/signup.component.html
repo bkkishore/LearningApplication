@@ -1,59 +1,67 @@
 
-<div class="bg-container">
+<form [formGroup]="SignupForm" (ngSubmit)="onAdd()"></form>
 <p>
   signup works!
 </p>
 
-  <label>Enter userId </label><br>
-  <input name="userId" type="text" maxlength="20"  [(ngModel)]="userId"/> 
-  <br>
-   <br>
-  <label>Enter userFirstName </label><br>
-  <input name="userFirstName" type="text" maxlength="20"  [(ngModel)]="userFirstName"/> 
-  <br>
-  <br>
-  <label>Enter userLastName </label><br>
-  <input name="userLastName" type="text" maxlength="20"  [(ngModel)]="userLastName"/>
-  <br>
+<p>
+  <label for="userId">Enter userId </label>
+  <input type="text" id="userId" formControlName="userId">
+</p>
 
-  <br>
-  <label>Enter userDateOfBirth </label><br>
-  <input name="userDateOfBirth" type="date" maxlength="20"  [(ngModel)]="DateOfBirth"/>
-  <br>
+<p>
+  <label for="firstName">Enter firstName </label>
+  <input type="text" id="firstName" formControlName="firstName">
+</p>
 
-  <br>
-  <label>Enter CommuicationAddress </label><br>
-  <input name="commuicationAddress" type="text" maxlength="800"  [(ngModel)]="CommunicationAddress"/>
-  <br>
 
-  <br>
-  <label>Enter emailId </label><br>
-  <input name="emailId" type="email" maxlength="20"  [(ngModel)]="emailId"/>
-  <br>
- <br>
-  <label>Enter mobileNumber </label><br>
-  <input name="mobileNumber" type="number" maxlength="15"  [(ngModel)]="MobileNumber"/>
-  <br>
-  <br>
-  <label>Enter interests </label><br>
-  <input name="interests" type="text" maxlength="2000"  [(ngModel)]="interests"/>
-  <br>
+<p>
+  <label for="LastName">Enter LastName </label>
+  <input type="text" id="LastName" formControlName="LastName">
+</p>
 
-  <br>
-  <label>Enter Password </label><br>
-  <input name="Password" type="password" maxlength="20"  [(ngModel)]="Password"/>
-  <br>
+<p>
+  <label for="DateOfBirth">Enter DateOfBirth </label>
+  <input type="date" id="DateOfBirth" formControlName="DateOfBirth">
+</p>
+   
+<p>
+  <label for="CommuicationAddress">Enter CommuicationAddress </label>
+  <input type="text" id="CommuicationAddress" formControlName="CommuicationAddress">
+</p>
+
+<p>
+  <label for="emailId">Enter emailId </label>
+  <input type="email" id="emailId" formControlName="emailId">
+</p>
   
-  <br>
-  <label> ConfirmPassword </label><br>
-  <input name="ConfirmPassword" type="password"  (keyup)="onKeyUpConfirmPassword()" maxlength="20"  [(ngModel)]="ConfirmPassword"/>
-  <br>
+<p>
+  <label for="mobileNumber">Enter mobileNumber </label>
+  <input type="number" id="mobileNumber" formControlName="mobileNumber">
+</p>
+ 
+<p>
+  <label for="interests">Enter interests </label>
+  <input type="text" id="interests" formControlName="interests">
+</p>
+ 
+<p>
+  <label for="Password">Enter Password </label>
+  <input type="password" id="Password" formControlName="Password">
+</p>
+ 
+<p>
+  <label for="ConfirmPassword">Enter ConfirmPassword </label>
+  <input type="password" id="ConfirmPassword" formControlName="ConfirmPassword">
+</p>
+  
+  
 
   <br>
-  <button value="Add"  (click)="InsertUserProfile()">{{actionButtonName}}</button>
+  <button type="submit">Add</button>
   <br>
 
-</div>
+
 
   
   <!-- <button (click)="SignupUser()">Signup</button></p> -->
